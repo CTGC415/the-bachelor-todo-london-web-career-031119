@@ -44,12 +44,14 @@ def get_occupation(data, hometown)
 end
 
 def get_average_age_for_season(data, season)
-
-
-  list = data[season].collect { |element| element["age"].to_i }
-  binding.pry
-  mean  = list.sum / list.length
-
+  numerator = 0.0
+  divisor = 0.0
+  data[season].collect do |element|
+    numerator += element["age"].to_i
+    divisor +=1
+  end
+  mean  = numerator / divisor
+  mean.round
 end
 
 # This method did not work for some reason -> NoMethodError: undefined method `sum' for #<Array: 0x0000....>
